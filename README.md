@@ -30,4 +30,8 @@ You need to have the following software installed on your machine
 Steps
 1. Install anaconda 
 2. Add conda to your system PATH
+3. Check the INSTALLATION.md here on a comprehensive guide on how to install and run the tutorials.
+
+# Contribution 
+Contributions are welcome, if you're familiar with the PySyft framework and would love to contribute by writing beginner-friendly tutorials you can always send a PR. i'd also highly recommend contributions to the open source Openmined community which is a group of developers working on making the world more privacy preserving, check out the openmined repo [here](https://github.com/OpenMined) 
 
