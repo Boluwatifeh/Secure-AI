@@ -34,5 +34,5 @@ Steps
 3. Check the INSTALLATION.md [here](https://github.com/Boluwatifeh/Secure-AI/blob/master/INSTALLATION.md) on a comprehensive guide on how to install and run the tutorials.
 
 # Contribution 
-Contributions are welcome, if you're familiar with the PySyft framework and would love to contribute by writing beginner-friendly tutorials you can always send a PR. i'd also highly recommend contributions to the open source Openmined community which is a group of developers working on making the world more privacy preserving, check out the openmined repo here https://github.com/OpenMined. Check out the CONTRIBUTING.md 
+Contributions are welcome, if you're familiar with the PySyft framework and would love to contribute by writing beginner-friendly tutorials you can always send a PR. i'd also highly recommend contributions to the open source Openmined community which is a group of developers working on making the world more privacy preserving, check out the openmined repo here https://github.com/OpenMined. Check out the CONTRIBUTING.md [over here](https://github.com/Boluwatifeh/Secure-AI/blob/master/CONTRIBUTING.md)
 
