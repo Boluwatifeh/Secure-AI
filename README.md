@@ -13,25 +13,23 @@ The exponential growth of data is overwhelming and data nowadays is basically ub
 This lesson we will tackle lowering some of the potential implications and challenges posed by training Deep neural network on distributed data and AI as well as principles for building responsible AI that is secure to avoid harming others amd protecting privacy of data.
 
 # Pre-requisites
-Knowledge of the following are required in irder to folow along with the tutorial
+Knowledge of the following are required in order to follow along with the tutorial
 
 - Python
-- Numpy 
 - Pytorch 
 
 # System requirements 
 You need to have the following software installed on your machine
 
 - Anaconda/conda
-- Numpy 
 - Pytorch 1.4 or later 
-- PySyft
+- Syft 0.2.9
 
 # Installation 
 Steps
 1. Install anaconda 
 2. Add conda to your system PATH
-3. Check the INSTALLATION.md [here](https://github.com/Boluwatifeh/Secure-AI/blob/master/INSTALLATION.md) on a comprehensive guide on how to install and run the tutorials.
+3. Check the [INSTALLATION.md here](https://github.com/Boluwatifeh/Secure-AI/blob/master/INSTALLATION.md) on a comprehensive guide on how to install and run the tutorials.
 
 # Quickstart
 
