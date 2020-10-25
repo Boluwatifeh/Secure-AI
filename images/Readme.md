@@ -1,1 +1,1 @@
-This folder contains relevant images for this projectd
+This folder contains relevant images for this project
