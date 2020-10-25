@@ -17,17 +17,17 @@ You should get a version number corresponding to the version of conda you instal
 # Step 2 - Create an environment 
 Run the following command to create an environment in conda
 ```bash
-$ conda create -n my_env python=3.8
+$ conda create -n my_env python=3.6
 $ conda activate my_env 
 ```
 After activating the environment, the next thing is to install syft which basically install every other packages required for the tutorial
 ```bash
-$ pip install 'syft[udacity]'
+$ pip install syft
 ```
 
 # Step 3 - Clone this repo 
 ```bash
-$ git clone repo lin here ...
+$ git clone https://github.com/Boluwatifeh/Secure-AI.git
 ```
 
 # Step 4
