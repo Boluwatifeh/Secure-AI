@@ -20,8 +20,9 @@ Run the following command to create an environment in conda
 $ conda create -n my_env python=3.6
 $ conda activate my_env 
 ```
-After activating the environment, the next thing is to install syft which basically install every other packages required for the tutorial
+After activating the environment, the next thing is to install jupyter notebook and syft which basically install every other packages required for the tutorial
 ```bash
+$ conda install jupyter notebook
 $ pip install syft
 ```
 
