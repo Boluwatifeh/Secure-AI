@@ -42,9 +42,7 @@ Run the code cells in the note book
 # Contributing 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change. if you're familiar with the PySyft framework and would love to contribute by writing beginner-friendly tutorials you can always send a PR. i'd also highly recommend contributions to the open source Openmined community which is a group of developers working on making the world more privacy preserving, check out the openmined repo here https://github.com/OpenMined. Check out the CONTRIBUTING.md [over here](https://github.com/Boluwatifeh/Secure-AI/blob/master/CONTRIBUTING.md)
 
-# Licence
 
-[MIT License](https://github.com/Boluwatifeh/Secure-AI/blob/master/LICENSE)
 
 
 
@@ -271,4 +269,22 @@ print('\nTest set: Average loss: {:.4f}, Accuracy: {}/{} ({:.0f}%)\n'.format(
 Test set: Average loss: 0.1762, Accuracy: 9475/10000 (95%)
 
 ## Conclusion
-As you can see, we achieved an accuracy of 95% which is pretty good for a federated sytem as this tutorial has demonstrated.
+As you can see, we achieved an accuracy of 95% which is pretty good for a federated sytem as this tutorial has demonstrated. One thing you might want to ask or be curios about is how mch time does the federated learning training takes compared to normal pytorch. The federated approach takes a lttle more time than the normal pytorch but with the technique we implemented and the impact it's quite reasonable to go with this approach. Federated learning could also be implemented in the healthcare domain as health data themselves contain private information about patients. With Federated learning, developers could train their models on healthcare data from various hospitals in a safe and secure manner so as for the model to learn and generalize well from distributed data. This is not the end, federated learning is not enough to protect privacy as there are other concerns about how the models sent for training is being secured, can information about individuals be identified by reverse engineering the updated weights from the model ? Because of this pysyft supports algorithms for concepts like diffential privacy and homomorphic encryption amongst other techniques to preserve privacy on a large scale.
+
+## Learn more
+- Check out the Openmined open source community on github https://github.com/OpenMined
+- Enroll to the udacity course developed by the openmined team to get a broader overview of privacy in the context of deep learning. [Udacity..](https://www.udacity.com/course/secure-and-private-ai--ud185)
+- Star the PySyft repository on github and contribute to one of the projects (https://github.com/OpenMined/PySyft)
+- Check the [tutorials section of the PySyft repository](https://github.com/OpenMined/PySyft/tree/master/examples/tutorials)
+
+## References
+- Towards federated learning at scale arxiv paper https://arxiv.org/abs/1902.01046
+- Andrew Trask pivacy preserving AIoutube video(MIT series) https://www.youtube.com/watch?v=4zrU54VIK6k
+- Openmined Psyft repository https://github.com/OpenMined/PySyft 
+
+
+
+
+# Licence
+
+[MIT License](https://github.com/Boluwatifeh/Secure-AI/blob/master/LICENSE)
