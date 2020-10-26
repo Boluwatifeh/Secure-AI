@@ -1,5 +1,3 @@
-## Introduction
-
 # Secure-AI
 
 This repository contains submission for the 2020 Facebook developers circle community challenge. We will be discussing about privacy preserving machine learning tools built on top of pytorch alongside tutorials for technical implementations.
@@ -60,10 +58,10 @@ Federated learning is a machine learning technique used in training models on di
 
 ## Outline
 - [Introduction](#introduction)
-- Setup
-- Steps
-- Conclusion
-- Learn more
+- [Setup](#setup)
+- [Steps](#steps)
+- [Conclusion](#conclusion)
+- [Learn more](#learn-more)
 
 ## Introduction
 
@@ -127,7 +125,7 @@ Over this tutorial, we're going to look into one of the features of pysyft by tr
 
 Pysyft is an open source python library for computing on data you do not own or have access to. It is built on top of the popular deep learning framework (pytorch and tensorflow) and allows for computations on decentralized data, it also provides room for privacy preserving tools such as secure multiple party computation and differential privacy. Jump over to the github repository to learn more. 
 
-## Installation 
+## Steps 
 
 Pip install syft
 
@@ -135,5 +133,142 @@ Pip install syft
 
 Lets import torch, torchvision, and other modules
 
-<iframe src="https://jovian.ai/embed?url=https://jovian.ai/tifeasypeasy/federated-learning-on-mnist/v/12&cellId=7" title="Jovian Viewer" height="168" width="800" frameborder="0" scrolling="auto">
-</iframe>
+```bash
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+import torch.optim as optim
+from torchvision import datasets, transforms
+```
+
+```bash
+import syft as sy  # import the syft library
+hook = sy.TorchHook(torch)  # attach the pytorch hook
+joe = sy.VirtualWorker(hook, id="joe")  #  remote worker joe
+jane = sy.VirtualWorker(hook, id="jane")  #  remote worker  jane
+```
+
+## Load in the MNIST dataset
+
+Let's load in the data and transform it into a federated dataset by implementing the federate() method.
+
+```bash
+transform = transforms.Compose([
+    transforms.ToTensor(),
+    transforms.Normalize((0.5, ), (0.5, )),
+])
+
+train_set = datasets.MNIST(
+    "~/.pytorch/MNIST_data/", train=True, download=True, transform=transform)
+test_set = datasets.MNIST(
+    "~/.pytorch/MNIST_data/", train=False, download=True, transform=transform)
+
+federated_train_loader = sy.FederatedDataLoader(
+    train_set.federate((joe, jane)), batch_size=64, shuffle=True) # the federate() method splits the data within the workers
+
+test_loader = torch.utils.data.DataLoader(
+    test_set, batch_size=64, shuffle=True)
+```
+
+## Define the network architecture
+
+The network architecture would remain the same just as the example tutorial from pytorch with an input of 784-dim tensor of pixel values for each image, and producing a tensor of length 10 which indicates the class scores for an input image,
+
+```bash
+class Net(nn.Module):
+    def __init__(self):
+        super(Net, self).__init__()
+        self.fc1 = nn.Linear(784, 500)
+        self.fc2 = nn.Linear(500, 10)
+
+    def forward(self, x):
+        x = x.view(-1, 784)
+        x = self.fc1(x)
+        x = F.relu(x)
+        x = self.fc2(x)
+        return F.log_softmax(x, dim=1)
+model = Net()
+print(model)
+optimizer = optim.SGD(model.parameters(), lr=0.01)
+```
+
+## Train the network
+
+Looking at the training process of this distributed approach, the data seem to be on a remote machine so therefore we would use the location attribute to get the location and send our model to that location where the data is present, we would then get back the improved model using the get() method and calculate the loss.
+
+```bash
+n_epoch = 10 
+for epoch in range(n_epoch):
+    model.train()
+    for batch_idx, (data, target) in enumerate(federated_train_loader):
+        model.send(data.location) # send the model to the client device where the data is present
+        optimizer.zero_grad()         # training the model
+        output = model(data)
+        loss = F.nll_loss(output, target)
+        loss.backward()
+        optimizer.step()
+        model.get() # get back the improved model
+        if batch_idx % 100 == 0: 
+            loss = loss.get() # get back the loss
+            print('Training Epoch: {:2d} [{:5d}/{:5d} ({:3.0f}%)]\tLoss: {:.6f}'.format(
+                epoch+1, batch_idx * 64,
+                len(federated_train_loader) * 64,
+                100. * batch_idx / len(federated_train_loader), loss.item()))
+```
+
+Training Epoch:  1 [    0/60032 (  0%)]	Loss: 2.347703
+
+Training Epoch:  1 [ 6400/60032 ( 11%)]	Loss: 1.378724
+
+Training Epoch:  1 [12800/60032 ( 21%)]	Loss: 0.804508
+
+Training Epoch:  1 [19200/60032 ( 32%)]	Loss: 0.622711
+
+Training Epoch:  1 [25600/60032 ( 43%)]	Loss: 0.551721
+
+Training Epoch:  1 [32000/60032 ( 53%)]	Loss: 0.462930
+
+Training Epoch:  1 [38400/60032 ( 64%)]	Loss: 0.465403
+
+.......
+
+Training Epoch: 10 [25600/60032 ( 43%)]	Loss: 0.184979
+
+Training Epoch: 10 [32000/60032 ( 53%)]	Loss: 0.143992
+
+Training Epoch: 10 [38400/60032 ( 64%)]	Loss: 0.151426
+
+Training Epoch: 10 [44800/60032 ( 75%)]	Loss: 0.283537
+
+Training Epoch: 10 [51200/60032 ( 85%)]	Loss: 0.229831
+
+Training Epoch: 10 [57600/60032 ( 96%)]	Loss: 0.264431
+
+
+## Testing the trained model 
+
+Remember the test dataset remains unchanged as it is on our local machine compared to the train dataset which we have splitted between two virtual workers.
+
+```bash
+model.eval()
+test_loss = 0
+correct = 0
+with torch.no_grad():
+    for data, target in test_loader:
+        output = model(data)
+        test_loss += F.nll_loss(
+            output, target, reduction='sum').item()
+        pred = output.argmax(1, keepdim=True) # get the index of the max log-probability
+        correct += pred.eq(target.view_as(pred)).sum().item()
+
+test_loss /= len(test_loader.dataset)
+
+print('\nTest set: Average loss: {:.4f}, Accuracy: {}/{} ({:.0f}%)\n'.format(
+    test_loss,correct,
+    len(test_loader.dataset),
+    100. * correct / len(test_loader.dataset)))
+```
+Test set: Average loss: 0.1762, Accuracy: 9475/10000 (95%)
+
+## Conclusion
+As you can see, we achieved an accuracy of 95% which is pretty good for a federated sytem as this tutorial has demonstrated.
