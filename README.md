@@ -91,24 +91,32 @@ To run the tutorial and follow along, you need to be familiar with python, basic
 - Syft 0.2.9
 
 ## Quick Start
+
+**Option-1**: Run notebook online
+
+You can run the notebook for this tutorial(Part-2-federated-learning-with-pysyft-and-pytorch) on jovian without installing any dependencies by visiting [this link](https://jovian.ai/tifeasypeasy/federated-learning-on-mnist) and click on the run button > run on binder
+
+**option-2**: Run locally 
+- Create and activate an environment with python version 3.6
 ```bash
 $ Conda create -n my_env python=3.6 
-```
-```bash
 $ Conda activate my_env 
 ```
+- After activating the environment, the next thing is to install jupyter notebook and syft which basically install every other packages required for the tutorial.
 ```bash
+$ conda install jupyter notebook
 $ Pip install syft
 ```
+- Clone this repository
 ```bash
 $ git clone https://github.com/boluwatifeh/Secure-AI.git 
 ```
+- Cd into the tutorials folder and run the notebook
 ```bash
 $ Cd tutorials
-```
-```bash
 $ Jupyter notebook
 ```
+
 Over this tutorial, we're going to look into one of the features of pysyft by training a neutral network on MNIST for federated learning.
 
 ## What is pysyft?
@@ -119,7 +127,9 @@ Pysyft is an open source python library for computing on data you do not own or 
 
 Pip install syft
 
-## Imports
+## Imports and initializing hook
 
-Import torch
-Import syft as sy
+Lets import torch, torchvision, and other modules
+
+![.](https://jovian.ml/tifeasypeasy/federated-learning-on-mnist/v/12&cellId=7)
+
