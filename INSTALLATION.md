@@ -1,5 +1,15 @@
 ## Installation Guide 
 
+This notebook was developed on [Jovian.ml](https://www.jovian.ml), a platform for sharing data science projects online. You can "run" this tutorial and experiment with the code examples in a couple of ways: *using free online resources* (recommended) or *on your own computer*.
+
+### Option 1: Running using free online resources (1-click, recommended)
+
+The easiest way to start executing this notebook is to click the "Run" button at the top of the jovian page [via this link](https://jovian.ai/tifeasypeasy/introducing-privacy-preserving-tool), and select "Run on Binder". This will run the notebook on [mybinder.org](https://mybinder.org), a free online service for running Jupyter notebooks. You can also select "Run on Colab" or "Run on Kaggle", but you'll need to create an account on [Google Colab](https://colab.research.google.com) or [Kaggle](https://kaggle.com) to use these platforms.
+
+### Option 2: Running on your computer locally
+
+You'll need to install Python and download this notebook on your computer to run it locally. I recommend using the [Conda](https://docs.conda.io/en/latest/) distribution of Python. Here's what you need to do to get started:
+
 This include a complete guide on the installation processes for variety of operating systems. 
 
 # Step 1 - Install anaconda/conda and add it to PATH
@@ -25,6 +35,7 @@ After activating the environment, the next thing is to install jupyter notebook 
 $ conda install jupyter notebook
 $ pip install syft
 ```
+If you're facing some issues installing syft locally, kindly skip the `pip install syft` command and move on as there is a room for installing syft via the jupyter notebook.
 
 # Step 3 - Clone this repo 
 ```bash
