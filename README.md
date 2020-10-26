@@ -44,6 +44,10 @@ Run the code cells in the note book
 # Contributing 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change. if you're familiar with the PySyft framework and would love to contribute by writing beginner-friendly tutorials you can always send a PR. i'd also highly recommend contributions to the open source Openmined community which is a group of developers working on making the world more privacy preserving, check out the openmined repo here https://github.com/OpenMined. Check out the CONTRIBUTING.md [over here](https://github.com/Boluwatifeh/Secure-AI/blob/master/CONTRIBUTING.md)
 
+# Licence
+
+[MIT License](https://github.com/Boluwatifeh/Secure-AI/blob/master/LICENSE)
+
 
 
 
@@ -55,7 +59,7 @@ What is federated learning and why is it important ?
 Federated learning is a machine learning technique used in training models on distributed data in a decentralized manner, this tutorial would cover how to leverage pytorch and pysyft for federated learning. At the end, readers would train a federated neural network on the official MNIST dataset. 
 
 ## Outline
-- Introduction 
+- [Introduction](#introduction)
 - Setup
 - Steps
 - Conclusion
@@ -82,7 +86,7 @@ Federated learning workflow
 
 - **Voice recognition**: FL is also used in voice recognition technologies, an example is in apple Siri and recently Google introduced the audio recognition technology on Google assistant to train and better improve users experience with the Google assistant. Watch a [demonstration of FL on audio recording for speech systems here](https://www.youtube.com/watch?v=oqmcvxzbRJs). In every of these use cases, the data doesn't leave the edge devices thereby keeping the data private, safe and secure while still improving these technologies and making products smarter over time.
 
-## Getting started
+## Setup
 
 To run the tutorial and follow along, you need to be familiar with python, basics of pytorch, jupyter notebooks and basics of pysyft for remote execution (this can be found in the part 1 notebook of the tutorials directory on github). Head over to this github repository and make sure your machine meets the following requirements 
 - Anaconda/conda 4.8+
@@ -131,5 +135,5 @@ Pip install syft
 
 Lets import torch, torchvision, and other modules
 
-![.](https://jovian.ml/tifeasypeasy/federated-learning-on-mnist/v/12&cellId=7)
-
+<iframe src="https://jovian.ai/embed?url=https://jovian.ai/tifeasypeasy/federated-learning-on-mnist/v/12&cellId=7" title="Jovian Viewer" height="168" width="800" frameborder="0" scrolling="auto">
+</iframe>
