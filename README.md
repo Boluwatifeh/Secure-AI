@@ -49,7 +49,7 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 ## Tutorial: Getting started with federated learning using PyTorch and PySyft
 
-[.](https://preview.redd.it/wh66axb4a2151.png?width=600&format=png&auto=webp&s=276a41a59a5e1c4c0185a0e74623efe6f41d4dbb) 
+![.](https://preview.redd.it/wh66axb4a2151.png?width=600&format=png&auto=webp&s=276a41a59a5e1c4c0185a0e74623efe6f41d4dbb) 
 
 What is federated learning and why is it important ?
 Federated learning is a machine learning technique used in training models on distributed data in a decentralized manner, this tutorial would cover how to leverage pytorch and pysyft for federated learning. At the end, readers would train a federated neural network on the official MNIST dataset. 
